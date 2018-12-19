@@ -1,0 +1,45 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card style="height: calc(100vh - 2 * 2.1rem);">
+      <nb-card-body style="display: flex; flex-direction: column;">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12" style="margin: 0 auto;">
+          <div class="row">
+            <div style="margin: 0 auto; height: 170px; margin-top: 60px;">
+              <img *ngIf="loginButtonClicked" src="../../../assets/loaders/loading-green.gif">
+            </div>
+          </div>
+          <nb-card>
+            <nb-card-body>
+              <nb-auth-block><h2 class="title">LOGIN TO YOUR ACCOUNT</h2>
+                <small class="form-text sub-title">Hello! Sign in with your email or username and password</small>
+                <small class="form-text sub-title help" *ngIf="loginFailed || connectionFailed || somethingWentWrong">ERROR!!! {{ errorText }}</small>
+                <form (ngSubmit)="onLogin()" #form="ngForm">
+                  <div class="form-group">
+                    <label class="sr-only" for="username">Email address</label>
+                    <input class="form-control" type="text" id="username" name="username"  placeholder="Username or email or phone" required [disabled]="loginButtonClicked" ngModel #username = "ngModel" >
+                    <span class="help-block" *ngIf="!username.valid && username.touched" [style.display] = "warningDisplay">Please provide your username</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input class="form-control" id="password" name="password" placeholder="Password" type="password" required [disabled]="loginButtonClicked" minlength="4" maxlength="50" ngModel #password = "ngModel">
+                    <span class="help-block" *ngIf="!password.valid && password.touched" [style.display] = "warningDisplay">Please provide your password</span>
+                  </div>
+                  <div class="form-group accept-group col-sm-12">
+                    <nb-checkbox name="rememberMe">
+                      <!--<label class="customised-control customised-checkbox">-->
+                      <input class="customised-control-input" type="checkbox">
+                      <span class="customised-control-indicator"></span><span class="customised-control-description">Remember me</span>
+                      <!--</label>-->
+                    </nb-checkbox>
+                    <a class="forgot-password" href="#/auth/request-password">Forgot Password?</a>
+                  </div>
+                  <button type="submit" class="btn btn-block btn-hero-success" [disabled] = "loginButtonClicked || !form.valid"> Sign In</button>
+                </form>
+              </nb-auth-block>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

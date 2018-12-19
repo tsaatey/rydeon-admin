@@ -1,0 +1,12 @@
+.clear-bottom {
+  margin-bottom: 10px;
+}
+
+.help-block {
+  font-size: 12px;
+  color: crimson;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, angular2-multiselect.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-body>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for user...">
+            <span class="input-group-append">
+            <button class="btn btn-hero-secondary btn-round input-group-text">
+              Search
+            </button>
+          </span>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-11">
+      <nb-card>
+        <nb-card-body>
+          <div class="row">
+            <table class="table table-bordered">
+              <tr style="border: 3px solid;">
+                <th style="font-size: 16px; text-align: center;">S/N</th>
+                <th style="font-size: 16px;">Account Holder</th>
+                <th style="font-size: 16px;; text-align: center;">Phone #</th>
+                <th style="font-size: 16px; text-align: center;">Email</th>
+                <th style="text-align: center; font-size: 16px;">Current Role</th>
+                <th style="font-size: 16px; text-align: center;">Change Role</th>
+                <th style="text-align: center; font-size: 16px;">Action</th>
+              </tr>
+              <tr *ngFor="let user of users; let i = index">
+                <td style="text-align: center;">
+                  <label class="form-control">{{ i + 1 }}</label>
+                </td>
+                <td>
+                  <label class="form-control">{{ user.firstname + ' ' + user.lastname }}</label>
+                </td>
+                <td style="text-align: center;">
+                  <label class="form-control">{{ user.phone }}</label>
+                </td>
+                <td style="text-align: center;">
+                  <label class="form-control">{{ user.email }}</label>
+                </td>
+                <td style="text-align: center;">
+                  <label class="form-control">{{ user.role }}</label>
+                </td>
+                <td>
+                  <select class="form-control">
+                    <option disabled>Select Role</option>
+                    <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.label }}</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="button" class="form-control btn btn-hero-warning" value="Change"/>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

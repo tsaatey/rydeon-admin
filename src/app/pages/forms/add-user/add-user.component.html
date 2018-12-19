@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7">
+      <nb-card>
+        <nb-card-header>CREATE A NEW USER ACCOUNT</nb-card-header>
+        <nb-card-body>
+          <form (ngSubmit)="onAddUser()" (ngReset)="onReset()" #form="ngForm">
+            <div class="row">
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="text" placeholder="First Name" class="form-control" name="firstname" ngModel required
+                       #firstname="ngModel"/>
+                <span class="help-block" *ngIf="!firstname.valid && firstname.touched">Please supply first name</span>
+              </div>
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="text" placeholder="Last Name" class="form-control" name="lastname" ngModel required
+                       #lastname="ngModel"/>
+                <span class="help-block" *ngIf="!lastname.valid && lastname.touched">Please supply last name</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6 clear-bottom">
+                <angular2-multiselect class="form-control" [data]="gender" [(ngModel)]="selectedGender"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="OnItemDeSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelectAll)="onDeSelectAll($event)" id="user_gender" name="user_gender" required ngModel
+                #user_gender="ngModel"></angular2-multiselect>
+                <span class="help-block" *ngIf="!user_gender.valid && user_gender.touched">Please select a gender</span>
+              </div>
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="text" placeholder="Phone Number" id="phone" class="form-control" name="phone" ngModel required
+                       #phone="ngModel"/>
+                <span class="help-block" *ngIf="!phone.valid && phone.touched">Please provide phone number</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="email" placeholder="Email Address" id="email" class="form-control" name="email" ngModel
+                       email required
+                       #email="ngModel"/>
+                <span class="help-block" *ngIf="!email.valid && email.touched">Please provide a valid email</span>
+              </div>
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="text" placeholder="Username" class="form-control" id="username" name="username" required
+                       ngModel
+                       #username="ngModel"/>
+                <span class="help-block" *ngIf="!username.valid && username.touched">Please provide username</span>
+              </div>
+            </div>
+            <!--<div class="row">-->
+              <!--<div class="form-group col-sm-6 clear-bottom">-->
+                <!--&lt;!&ndash;<angular2-multiselect class="form-control" [data]="roles" [(ngModel)]="selectedRoles"&ndash;&gt;-->
+                <!--&lt;!&ndash;[settings]="dropdownSettings"&ndash;&gt;-->
+                <!--&lt;!&ndash;(onSelect)="onItemSelect($event)"&ndash;&gt;-->
+                <!--&lt;!&ndash;(onDeSelect)="OnItemDeSelect($event)"&ndash;&gt;-->
+                <!--&lt;!&ndash;(onSelectAll)="onSelectAll($event)"&ndash;&gt;-->
+                <!--&lt;!&ndash;(onDeSelectAll)="onDeSelectAll($event)" name="role" required ngModel&ndash;&gt;-->
+                <!--&lt;!&ndash;#role="ngModel"></angular2-multiselect>&ndash;&gt;-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="password" placeholder="Password" class="form-control" name="password" id="password" ngModel
+                       #password="ngModel" required (keydown)="passwordValidate()"/>
+                <span class="help-block"
+                      *ngIf="(!passwordValidated && password.touched) || (!password.valid && password.touched)">{{ errorText }}</span>
+              </div>
+              <div class="form-group col-sm-6 clear-bottom">
+                <input type="password" placeholder="Confirm Password" class="form-control" name="cPassword"
+                       id="cPassword" ngModel required #cPassword="ngModel" (keyup)="matchPassword()"/>
+                <span class="help-block" *ngIf="passwordsDoNotMatch || (!cPassword.valid && cPassword.touched)">{{ errText }}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <input type="submit" class="form-control btn btn-hero-success" [disabled] = "!form.valid && passwordsDoNotMatch" value="Create"/>
+              </div>
+              <div class="col-sm-6 form-group">
+                <input type="reset" class="form-control btn btn-hero-danger" value="Clear"/>
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
