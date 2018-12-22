@@ -31,22 +31,22 @@ export class AddCarComponent implements OnInit {
   isUsernameEmpty: boolean = false;
 
   constructor(private router: Router, private helperService: HelperService, private userService: User2Service, private makeService: MakeService, private modelService: ModelService, private yearService: YearService) {
-    this.users = this.userService.getUsers().slice();
+    // this.users = this.userService.getUsers().slice();
     this.makes = this.makeService.getMakes();
     this.models = this.modelService.getModels();
     this.years = this.yearService.getYears();
   }
 
   ngOnInit() {
-    this.id = this.helperService.message;
-    if (this.id) {
-      this.currentUser = this.users[this.id - 1];
-      this.username = 'Client:  ' + this.currentUser.firstname + ' ' + this.currentUser.lastname;
-    } else {
-      this.isUsernameEmpty = true;
-      this.warning = 'Please go back and select a user!!!';
-      this.router.navigate(['/pages/forms/manage-cars/page-switcher/select-user']);
-    }
+    // this.id = this.helperService.message;
+    // if (this.id) {
+    //   this.currentUser = this.users[this.id - 1];
+    //   this.username = 'Client:  ' + this.currentUser.firstname + ' ' + this.currentUser.lastname;
+    // } else {
+    //   this.isUsernameEmpty = true;
+    //   this.warning = 'Please go back and select a user!!!';
+    //   this.router.navigate(['/pages/forms/manage-cars/page-switcher/select-user']);
+    // }
 
   }
 

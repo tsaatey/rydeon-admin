@@ -18,6 +18,7 @@ import {PageSwitcherRoutingModule} from "./forms/manage-cars/page-switcher/page-
 import {PageSwitcherModule} from "./forms/manage-cars/page-switcher/page-switcher.module";
 import {ManageRolesComponent} from "./forms/manage-roles/manage-roles.component";
 import {AngularMultiSelectModule} from "angular2-multiselect-dropdown";
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -42,6 +43,7 @@ const PAGES_COMPONENTS = [
     AddModelComponent,
     PageSwitcherComponent,
     ManageRolesComponent,
+    EditProfileComponent,
   ],
 })
 export class PagesModule {

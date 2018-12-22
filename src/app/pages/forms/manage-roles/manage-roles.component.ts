@@ -12,13 +12,29 @@ import {RoleService} from "../../../shared/role.service";
 export class ManageRolesComponent implements OnInit {
 
   users: User[];
-  roles: Role[];
+  roles = [];
 
   constructor(private userService: User2Service, private roleService: RoleService) {
-    this.users = this.userService.getUsers();
+    // this.users = this.userService.getUsers();
   }
 
   ngOnInit() {
+
+    this.roleService.getRoles()
+      .subscribe(currentRoles => {
+        const result = currentRoles['result'];
+        let i = 0;
+        let j = 0
+        for (let key in result) {
+          if (result.hasOwnProperty(key)) {
+            this.roles[i] = {id: ++j, itemName: result[key]['roleName']};
+            i++;
+          }
+        }
+        // console.log(this.roles);
+      }, err => {
+        console.log(err);
+      });
   }
 
 }

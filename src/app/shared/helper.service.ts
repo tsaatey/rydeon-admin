@@ -1,11 +1,10 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs/Rx";
 
 @Injectable()
 export class HelperService {
   message: any;
 
-  public getImage(base64EncodedImage) {
+  public getImage(base64EncodedImage): any {
     return 'data:image/png;base64,' + base64EncodedImage;
   }
 

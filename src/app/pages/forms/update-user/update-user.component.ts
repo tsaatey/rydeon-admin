@@ -12,7 +12,7 @@ export class UpdateUserComponent implements OnInit {
   users: User[];
 
   constructor(private userService: User2Service) {
-    this.users = this.userService.getUsers();
+    // this.users = this.userService.getUsers();
   }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class UpdateUserComponent implements OnInit {
 
   searchUser(){
     const data = this.searchInputRef.nativeElement.value;
-    console.log(this.userService.findUser(data));
+    // console.log(this.userService.findUser(data));
   }
 
 }

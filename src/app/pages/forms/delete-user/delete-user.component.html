@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-body>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for user to delete...">
-            <span class="input-group-append">
-            <button class="btn btn-hero-secondary btn-round input-group-text">
-              Search
-            </button>
-          </span>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
     <div class="col-lg-8">
       <nb-card>
-        <nb-card-body>
+        <nb-card-header>
           <div class="row">
+            <div class="col-sm-6">
+              <angular2-multiselect class="form-control" (onOpen)="onGetRoles()" [data]="roles"
+                                    [(ngModel)]="selectedRoles"
+                                    [settings]="roleDropdownSettings"
+                                    name="role"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onDeSelect)="OnItemDeSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelectAll)="onDeSelectAll($event)"
+                                    required
+                                    ngModel
+                                    id="role"
+                                    #role="ngModel"></angular2-multiselect>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row" *ngIf="usersAvailable">
             <table class="table table-bordered">
               <tr style="border: 3px solid;">
                 <th style="font-size: 16px; text-align: center;">S/N</th>
@@ -30,21 +30,22 @@
                 <th style="text-align: center; font-size: 16px;">Email</th>
                 <th style="text-align: center; font-size: 16px;">Action</th>
               </tr>
-              <tr *ngFor="let user of users; let i = index">
+              <tr *ngFor="let employee of employees; let i = index">
                 <td style="text-align: center;">
                   <label class="form-control">{{ i + 1 }}</label>
                 </td>
                 <td>
-                  <label class="form-control">{{ user.firstname + ' ' + user.lastname }}</label>
+                  <label class="form-control">{{ employee.username }}</label>
                 </td>
                 <td style="text-align: center;">
-                  <label class="form-control">{{ user.phone }}</label>
+                  <label class="form-control">{{ employee.phone }}</label>
                 </td>
                 <td style="text-align: center;">
-                  <label class="form-control">{{ user.email }}</label>
+                  <label class="form-control">{{ employee.email }}</label>
                 </td>
                 <td>
-                  <input type="button" class="form-control btn btn-hero-danger" value="Delete" (click)="deleteUser(user.id)"/>
+                  <input type="button" class="form-control btn btn-hero-danger" value="Delete"
+                         (click)="deleteUser(employee.id)"/>
                 </td>
               </tr>
             </table>

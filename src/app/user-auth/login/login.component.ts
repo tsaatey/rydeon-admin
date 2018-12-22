@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
           this.warningDisplay = 'block';
         }
 
-        if (error.status === 403) {
+        if (error.status === 403 || error.status === 500) {
           this.errorText = 'Something went wrong, please try again later.';
           this.somethingWentWrong = true;
           this.loginButtonClicked = false;

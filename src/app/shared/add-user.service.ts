@@ -10,11 +10,11 @@ export class AddUserService {
   constructor(private httpClient: HttpClient, private apiService: ApiService){}
 
   public createUserAccount(data: any) {
-    const header = new HttpHeaders();
-    header.set('Content-Type', 'application/json')
+    let header = new HttpHeaders();
+    header = header.set('Content-Type', 'application/json');
     return this.httpClient.post(this.apiService.create_user, data, {headers: header})
       .pipe(map((response: HttpResponse<any>) =>{
-        return response['message'];
+        return response;
       })).pipe(catchError(err => {
         return Observable.throwError(err);
       }))

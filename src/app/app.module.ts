@@ -33,6 +33,7 @@ import {CurrentUser} from "./shared/current-user.model";
 import {AngularMultiSelectModule} from "angular2-multiselect-dropdown";
 import {ConnectionService} from "ng-connection-service";
 import {AddUserService} from "./shared/add-user.service";
+import {EmployeeService} from "./shared/employee.service";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -70,6 +71,7 @@ import {AddUserService} from "./shared/add-user.service";
     ApiService,
     CurrentUserService,
     CurrentUser,
+    EmployeeService,
   ],
 })
 export class AppModule {

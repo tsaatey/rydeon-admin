@@ -7,6 +7,7 @@ export class ApiService {
   private _user_role: string;
   private _assign_role: string;
   private _create_user: string;
+  private _find_user: string;
 
 
   private localhost: string = 'http://localhost:5000';
@@ -19,7 +20,8 @@ export class ApiService {
     this._addCar = this.localhost + '/api/rydeon/car';
     this._user_role = this.localhost + '/admin/auth/role/all';
     this._assign_role = this.localhost + '/admin/auth/userrole';
-    this._create_user = this.localhost + 'admin/rydeon/create/employee/account';
+    this._create_user = this.localhost + '/admin/rydeon/create/employee/account';
+    this._find_user = this.localhost + '/admin/auth/users?role=';
   }
 
 
@@ -49,5 +51,10 @@ export class ApiService {
 
   get create_user(): string {
     return this._create_user;
+  }
+
+
+  get find_user(): string {
+    return this._find_user;
   }
 }

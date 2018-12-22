@@ -14,7 +14,7 @@ export class SelectUserComponent implements OnInit {
   public id: any;
 
   constructor(private userService: User2Service, private helperService: HelperService) {
-    this.users = this.userService.getUsers();
+    // this.users = this.userService.getUsers();
   }
 
   ngOnInit() {
