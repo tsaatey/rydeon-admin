@@ -5,12 +5,15 @@
       <nb-card>
         <nb-card-header>ADD CAR MAKES</nb-card-header>
         <nb-card-body>
-          <div class="input-group clear-bottom">
-            <input type="text" placeholder="Enter car make here..." class="form-control"/>
-          </div>
-          <div class="input-group">
-            <input type="button" class="form-control btn btn-hero-success" value="Save"/>
-          </div>
+          <form (ngSubmit) = "onAddMake()" #form = "ngForm">
+            <small class="form-text sub-title help" *ngIf="errorOccurred || dataSaved" style="font-size: 14px; margin-bottom: 15px; color: #ffffff">{{ message }}</small>
+            <div class="form-group clear-bottom">
+              <input type="text" placeholder="Enter car make here..." class="form-control" name="make" ngModel required #make = "ngModel" [disabled]="dataSubmissionInProgress"/>
+            </div>
+            <div class="input-group">
+              <input type="submit" class="form-control btn btn-hero-success" [disabled] = "!form.valid || dataSubmissionInProgress" value="Save"/>
+            </div>
+          </form>
         </nb-card-body>
       </nb-card>
     </div>

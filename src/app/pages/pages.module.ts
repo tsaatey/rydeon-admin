@@ -19,6 +19,7 @@ import {PageSwitcherModule} from "./forms/manage-cars/page-switcher/page-switche
 import {ManageRolesComponent} from "./forms/manage-roles/manage-roles.component";
 import {AngularMultiSelectModule} from "angular2-multiselect-dropdown";
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {ImageCropperModule} from "ngx-image-cropper";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -32,6 +33,7 @@ const PAGES_COMPONENTS = [
     MiscellaneousModule,
     PageSwitcherModule,
     AngularMultiSelectModule,
+    ImageCropperModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

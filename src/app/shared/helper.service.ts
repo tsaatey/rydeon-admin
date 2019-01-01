@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class HelperService {
   message: any;
+  immediateUser: any;
 
   public getImage(base64EncodedImage): any {
     return 'data:image/png;base64,' + base64EncodedImage;
@@ -22,6 +23,18 @@ export class HelperService {
 
   public passwordMatch(password: string, confirmedPassword: string): boolean {
     if (password == confirmedPassword) {
+      return true;
+    }
+    return false;
+  }
+
+  public getAvatar() {
+    return '../../../assets/images/avatar-head.png';
+  }
+
+  public hasValidExtension(extension: any) {
+    let extensions = new Set(['jpg', 'png']);
+    if (extensions.has(extension.toLowerCase())) {
       return true;
     }
     return false;

@@ -95,13 +95,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Add Make',
-        link: '/pages/forms/manage-cars/add-make'
+        link: '/pages/forms/manage-cars/add-make',
       }, {
         title: 'Add Model',
-        link: '/pages/forms/manage-cars/add-model'
+        link: '/pages/forms/manage-cars/add-model',
       }, {
         title: 'Enter Car Info for Client',
-        link: '/pages/forms/manage-cars/page-switcher/select-user'
+        link: '/pages/forms/manage-cars/page-switcher/select-user',
       },
     ],
   },

@@ -1,3 +1,14 @@
 .clear-bottom {
   margin-bottom: 20px;
 }
+
+.help-block {
+  font-size: 12px;
+  color: crimson;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+

@@ -28,4 +28,16 @@ export class EmployeeService {
     // Body yet to be implemented
   }
 
+  uploadEmployeePicture(image: FormData) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'form/multipart');
+
+    return this.httpClient.post(this.apiService.upload_profile_picture, image)
+      .pipe(map((response: HttpResponse<any>) => {
+        return response['message'];
+      })).pipe(catchError(error => {
+        return Observable.throwError(error);
+      }));
+  }
+
 }

@@ -34,6 +34,7 @@ import {AngularMultiSelectModule} from "angular2-multiselect-dropdown";
 import {ConnectionService} from "ng-connection-service";
 import {AddUserService} from "./shared/add-user.service";
 import {EmployeeService} from "./shared/employee.service";
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -43,7 +44,6 @@ import {EmployeeService} from "./shared/employee.service";
     HttpClientModule,
     AppRoutingModule,
     HttpModule,
-
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),

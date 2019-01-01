@@ -3,49 +3,55 @@
     <div class="col-lg-6">
       <nb-card>
         <nb-card-header>
-          <div>ENTER NEW CAR INFORMATION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-transform: uppercase; color: #009933; font-size: 14px">{{ username }}</span></div><br>
+          <div>ENTER NEW CAR INFORMATION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+            style="text-transform: uppercase; color: #009933; font-size: 14px">{{ username }}</span></div>
+          <br>
           <div style="color: orange" *ngIf="isUsernameEmpty">
             {{ warning }}
           </div>
         </nb-card-header>
         <nb-card-body>
-          <div class="input-group clear-bottom">
-            <select class="form-control">
-              <option disabled>Make</option>
-              <option *ngFor="let make of makes" value="{{ make.id }}">{{ make.make }}</option>
-            </select>
-          </div>
-          <div class="input-group clear-bottom">
-            <select class="form-control">
-              <option disabled>Model</option>
-              <option *ngFor="let model of models" value="{{ model.id }}">{{ model.model_name }}</option>
-            </select>
-          </div>
-          <div class="row full-name-inputs clear-bottom">
-            <div class="col-sm-3 input-group" style="line-height: 50px;">
-              Image of car...
+          <form (ngSubmit)='onAddCar()' #form='ngForm'>
+            <div class="input-group clear-bottom">
+              <select class="form-control" (change)="onchange($event)">
+                <option disabled>Car Make</option>
+                <option *ngFor="let make of makes" value="{{ make.id }}">{{ make.make }}</option>
+              </select>
             </div>
-            <div class="col-sm-9 input-group">
-              <input type="file" class="form-control" />
+            <div class="input-group clear-bottom">
+              <select class="form-control">
+                <option disabled>Car Model</option>
+                <option *ngFor="let model of models" value="{{ model.id }}">{{ model.modelName }}</option>
+              </select>
             </div>
-          </div>
-          <div class="input-group clear-bottom">
-            <input type="text" placeholder="Enter car registration number here..." class="form-control"/>
-          </div>
-          <div class="input-group clear-bottom">
-            <select class="form-control">
-              <option disabled>Year</option>
-              <option *ngFor="let year of years" value="{{ year.id }}">{{ year.year }}</option>
-            </select>
-          </div>
-          <div class="row full-name-inputs">
-            <div class="col-sm-6 input-group">
-              <input type="button" class="form-control btn btn-hero-success" [disabled] = "isUsernameEmpty" value="Save"/>
+            <div class="row full-name-inputs clear-bottom">
+              <div class="col-sm-3 input-group" style="line-height: 50px;">
+                Image of car...
+              </div>
+              <div class="col-sm-9 input-group">
+                <input type="file" class="form-control"/>
+              </div>
             </div>
-            <div class="col-sm-6 input-group">
-              <input type="button" class="form-control btn btn-hero-danger" [disabled] = "isUsernameEmpty" value="Clear"/>
+            <div class="input-group clear-bottom">
+              <input type="text" placeholder="Enter car registration number here..." class="form-control"/>
             </div>
-          </div>
+            <div class="input-group clear-bottom">
+              <select class="form-control">
+                <option disabled>Model Year</option>
+                <option *ngFor="let year of years" value="{{ year.id }}">{{ year.year }}</option>
+              </select>
+            </div>
+            <div class="row full-name-inputs">
+              <div class="col-sm-6 input-group">
+                <input type="submit" class="form-control btn btn-hero-success" [disabled]="isUsernameEmpty"
+                       value="Save"/>
+              </div>
+              <div class="col-sm-6 input-group">
+                <input type="button" class="form-control btn btn-hero-danger" [disabled]="isUsernameEmpty"
+                       value="Clear"/>
+              </div>
+            </div>
+          </form>
         </nb-card-body>
       </nb-card>
     </div>

@@ -1,3 +1,144 @@
-<p>
-  edit-profile works!
-</p>
+<nb-card style="height: calc(100vh - 2 * 5.1rem);">
+  <nb-card-header><h3 class="title">PROFILE SETTINGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+    currentUser.firstname.toUpperCase() + ' ' + currentUser.lastname.toUpperCase() }}</h3></nb-card-header>
+  <nb-card-body style="display: flex; flex-direction: column;">
+    <div class="row">
+      <div class="col-md-5" style="padding-left: 30px">
+        <div class="row">
+          <label style="width: 150px; height: 150px; border: 1px solid #ffffff">
+            <img [src]="currentUser.image" width="150" height="150">
+          </label>
+          <div id="button-area">
+            <button class="btn btn-hero-info" (click)="displayProfileEditForm()">Edit Profile</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+          <div class="col-md-12">
+            <div class="row">
+              <h5 class="title">General Information</h5>
+            </div>
+            <div class="row">
+              <table>
+                <tr>
+                  <td class="left-column">First name</td>
+                  <td class="right-column">{{ currentUser.firstname }}</td>
+                </tr>
+                <tr>
+                  <td class="left-column">Last name</td>
+                  <td class="right-column">{{ currentUser.lastname }}</td>
+                </tr>
+                <tr>
+                  <td class="left-column">Other name(s)</td>
+                  <td class="right-column">{{ currentUser?.othernames }}</td>
+                </tr>
+                <tr>
+                  <td class="left-column">Gender</td>
+                  <td class="right-column">{{ currentUser.gender }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 16px;">
+          <div class="col-md-12">
+            <div class="row">
+              <h5 class="title">Contact Information</h5>
+            </div>
+            <div class="row">
+              <table>
+                <tr>
+                  <td class="left-column">Phone #</td>
+                  <td class="right-column">{{ currentUser.phone }}</td>
+                </tr>
+                <tr>
+                  <td class="left-column">Email Address</td>
+                  <td class="right-column">{{ currentUser.email }}</td>
+                </tr>
+                <tr>
+                  <td class="left-column">Digital Address</td>
+                  <td class="right-column">{{ currentUser?.digitalAddress }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-6" *ngIf="editProfile">
+        <h5>Please edit or provide new information below and save</h5>
+        <form (ngSubmit) = 'onUploadEmployeePicture()' #editForm='ngForm'>
+          <div class="row">
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" placeholder="First name" class="form-control" name="firstname" ngModel
+                     #firstname="ngModel" [(ngModel)] = "currentUser.firstname"/>
+            </div>
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" [(ngModel)]="currentUser.lastname" class="form-control" placeholder="Last name" name="lastname" ngModel
+                     #lastname="ngModel" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" [(ngModel)]="currentUser.othernames" class="form-control" placeholder="Other name(s)" name="othernames" ngModel
+                     #firstname="ngModel" />
+            </div>
+            <div class="form-group col-sm-6 clear-bottom">
+              <select class="form-control" name="gender" [(ngModel)] = "currentUser.gender">
+                <option disabled>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" [(ngModel)]="currentUser.phone" placeholder="Phone" class="form-control" name="phone" ngModel
+                     #firstname="ngModel" />
+            </div>
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" [(ngModel)]="currentUser.email" class="form-control" placeholder="Email address" name="email" ngModel
+                     #lastname="ngModel"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6 clear-bottom">
+              <input type="text" [(ngModel)]="currentUser.digitalAddress" placeholder="Digital Address" class="form-control" name="digitalAddress" ngModel required
+                     #firstname="ngModel"/>
+            </div>
+            <div class="form-group col-sm-6 clear-bottom">
+              <div class="row">
+                <div class="col-sm-3 input-group" style="line-height: 50px;">
+                  Picture
+                </div>
+                <div class="col-sm-9 input-group">
+                  <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row clear-bottom" *ngIf="!pictureCropped">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1"
+                           [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                           (loadImageFailed)="loadImageFailed()" [resizeToWidth]="250" [onlyScaleDown]="true"></image-cropper>
+          </div>
+          <div class="row" style="margin-top: 20px; margin-bottom: 20px;" *ngIf="showCropButton">
+            <div style="margin: 0 auto;">
+              <button type="button" class="btn btn-hero-info" (click)="hideImageCropper()">Finish Cropping</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <button type="submit" class="btn btn-hero-success form-control">Save</button>
+            </div>
+            <div class="form-group col-sm-4">
+              <button type="button" class="form-control btn btn-hero-warning" (click)="hideProfileForm()">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <div></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

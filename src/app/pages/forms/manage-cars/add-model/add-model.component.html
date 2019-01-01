@@ -1,23 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-      <nb-card>
-        <nb-card-header>ADD CAR MODELS</nb-card-header>
-        <nb-card-body>
-          <div class="input-group clear-bottom">
-            <input type="text" placeholder="Enter car model here..." class="form-control"/>
+<nb-card style="width: 400px;">
+  <nb-card-header>ADD CAR MODELS</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <form (ngSubmit)='onAddModel()' #form='ngForm'>
+          <small class="form-text sub-title help" *ngIf="errorOccurred || dataSaved"
+                 style="font-size: 14px; margin-bottom: 15px; color: #ffffff">{{ message }}
+          </small>
+          <div class="row">
+            <div class="form-group col-sm-12 clear-bottom">
+              <input type="text" placeholder="Enter car model here..." class="form-control" ngModel required
+                     name="model" #model="ngModel"/>
+            </div>
           </div>
-          <div class="input-group clear-bottom">
-            <select class="form-control">
-              <option disabled>Make</option>
-              <option *ngFor="let make of makes" value="{{ make.id }}">{{ make.make }}</option>
-            </select>
+          <div class="row clear-bottom">
+            <div class="form-group col-sm-3" style="line-height: 50px;">
+              Car make
+            </div>
+            <div class="form-group col-sm-9">
+              <select class="form-control" name="makeId" required ngModel #makeId='ngModel'>
+                <option disabled>Make</option>
+                <option *ngFor="let make of makes" value="{{ make.id }}">{{ make.make }}</option>
+              </select>
+            </div>
           </div>
-          <div class="input-group">
-            <input type="button" class="form-control btn btn-hero-success" value="Save"/>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <input type="submit" class="form-control btn btn-hero-success"
+                     [disabled]="!form.valid || dataSubmissionInProgress" value="Save"/>
+            </div>
           </div>
-        </nb-card-body>
-      </nb-card>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+  </nb-card-body>
+</nb-card>

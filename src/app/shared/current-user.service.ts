@@ -21,9 +21,6 @@ export class CurrentUserService {
     return this.httpClient.get(this.apiService.current_user)
       .pipe(map((response: HttpResponse<any>) => {
         const result = response['result'];
-        localStorage.setItem('firstname', result['firstname']);
-        localStorage.setItem('lastname', result['lastname']);
-        localStorage.setItem('image', result['image']);
         return result;
       })).pipe(catchError(err => {
         return Observable.throwError(err);

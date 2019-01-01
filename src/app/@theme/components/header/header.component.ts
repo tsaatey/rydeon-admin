@@ -6,6 +6,7 @@ import {CurrentUserService} from "../../../shared/current-user.service";
 import {filter, map} from "rxjs/internal/operators";
 import {HelperService} from "../../../shared/helper.service";
 import {ConnectionService} from "ng-connection-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ngx-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
   user: any;
   userMenu = [{title: 'Profile'}, {title: 'Log out'}];
+  image = '';
 
   status = 'ONLINE';
   isConnected = true;
@@ -28,7 +30,9 @@ export class HeaderComponent implements OnInit {
               private currentUserService: CurrentUserService,
               @Inject(NB_WINDOW) private window,
               private helperService: HelperService,
-              private connectionService: ConnectionService) {
+              private connectionService: ConnectionService,
+              private router: Router) {
+
     this.connectionService.monitor().subscribe(isConnected => {
       this.isConnected = isConnected;
       if (this.isConnected) {
@@ -58,9 +62,14 @@ export class HeaderComponent implements OnInit {
 
     this.currentUserService.fetchCurrentUserData()
       .subscribe(currentUser => {
+        if (currentUser['image']) {
+          this.image = this.helperService.getImage(currentUser['image']);
+        } else {
+          this.image = this.helperService.getAvatar();
+        }
         this.user = {
           name: currentUser['firstname'] + ' ' + currentUser['lastname'],
-          picture: this.helperService.getImage(currentUser['image'])
+          picture: this.image
         }
       });
 
@@ -73,6 +82,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(title => {
         if (title === 'Profile') {
           // navigate to profile page
+          this.router.navigate(['pages/edit-profile']);
         }
 
         if (title === 'Log out') {

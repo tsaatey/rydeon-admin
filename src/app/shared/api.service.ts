@@ -8,6 +8,9 @@ export class ApiService {
   private _assign_role: string;
   private _create_user: string;
   private _find_user: string;
+  private _make: string;
+  private _car_model: string;
+  private _upload_profile_picture: string;
 
 
   private localhost: string = 'http://localhost:5000';
@@ -22,6 +25,9 @@ export class ApiService {
     this._assign_role = this.localhost + '/admin/auth/userrole';
     this._create_user = this.localhost + '/admin/rydeon/create/employee/account';
     this._find_user = this.localhost + '/admin/auth/users?role=';
+    this._make = this.localhost + '/api/rydeon/make';
+    this._car_model = this.localhost + '/api/rydeon/model';
+    this._upload_profile_picture = this.localhost + '/api/rydeon/image/upload';
   }
 
 
@@ -56,5 +62,18 @@ export class ApiService {
 
   get find_user(): string {
     return this._find_user;
+  }
+
+  get make(): string {
+    return this._make;
+  }
+
+
+  get car_model(): string {
+    return this._car_model;
+  }
+
+  get upload_profile_picture(): string {
+    return this._upload_profile_picture;
   }
 }

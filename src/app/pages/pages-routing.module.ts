@@ -15,6 +15,7 @@ import {SelectUserComponent} from "./forms/manage-cars/page-switcher/select-user
 import {PageSwitcherComponent} from "./forms/manage-cars/page-switcher/page-switcher.component";
 import {ManageRolesComponent} from "./forms/manage-roles/manage-roles.component";
 import {AuthGuardService} from "../user-auth/auth-guard.service";
+import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 
 const routes: Routes = [{
   path: '',
@@ -73,6 +74,9 @@ const routes: Routes = [{
   }, {
     path: 'forms/manage-roles',
     component: ManageRolesComponent,
+  }, {
+    path: 'edit-profile',
+    component: EditProfileComponent,
   }, {
     path: '',
     redirectTo: 'dashboard',
